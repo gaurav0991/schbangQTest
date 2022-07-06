@@ -11,7 +11,7 @@ function App() {
   }, []);
 
   function getinitialdata() {
-    fetch("http://localhost:4000/books").then(async (d) => {
+    fetch("https://schbang-backend-app.herokuapp.com/books").then(async (d) => {
       const res = await d.json();
       console.log(res);
       setBooks(res);
@@ -19,15 +19,17 @@ function App() {
   }
   function deleteBook(ud) {
     console.log(ud);
-    axios.delete(`http://localhost:4000/books?id=${ud._id}`).then((d) => {
-      getinitialdata();
-    });
+    axios
+      .delete(`https://schbang-backend-app.herokuapp.com/books?id=${ud._id}`)
+      .then((d) => {
+        getinitialdata();
+      });
   }
 
   function addNewBook() {
     if (!isFormOpen) {
       console.log(form);
-      fetch("http://localhost:4000/books", {
+      fetch("https://schbang-backend-app.herokuapp.com/books", {
         method: "POST",
         mode: "cors",
         headers: new Headers({
