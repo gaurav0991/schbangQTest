@@ -33,4 +33,16 @@ const updateBook = async function (req, res) {
   }
 };
 
-module.exports = { getbooks, createBooks, updateBook };
+const deleteBook = async function (req, res) {
+  try {
+    const updatedBook = await book.findByIdAndDelete(req.query.id, {
+      new: true,
+    });
+    res.json(updatedBook);
+  } catch (error) {
+    console.log(error);
+    res.send(error);
+  }
+};
+
+module.exports = { getbooks, createBooks, updateBook, deleteBook };
